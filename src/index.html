@@ -1,0 +1,61 @@
+<html>
+<style>
+  #root {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+  }
+  .item {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #bfbfbf;
+    margin: 0;
+    transition: ease 0.3s;
+    overflow: hidden;
+    flex-direction: column;
+    position: relative;
+  }
+  .item img,.item svg {
+    max-width: 100px;
+    max-height: 100px;
+  }
+  .item:hover {
+    border-color: #0490e0;
+    background: #bfbfbf;
+    color: #0490e0;
+  }
+  .item:hover img,.item:hover svg {
+    transform: scale(1.2);
+  }
+  .operation {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .operation p{
+    height: 24px;
+    line-height: 24px;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+</style>
+<body style="background: #fff;">
+  <div id="root"><root></root></div>
+  <script>
+    window.onload = () => {
+      // document.body.style.background = 'red'
+    }
+  </script>
+</body>
+
+</html>
