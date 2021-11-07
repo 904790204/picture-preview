@@ -1,11 +1,11 @@
 {
-	"name": "img-preview",
-	"displayName": "img preview",
+	"name": "images-preview",
+	"displayName": "图片缩略图预览",
 	"description": "a image preview plugin",
-	"version": "0.0.1",
-	"publisher": "daguang",
+	"version": "0.0.2",
+	"publisher": "kimtakuang",
 	"engines": {
-		"vscode": "^1.61.0"
+		"vscode": "^1.60.0"
 	},
 	"categories": [
 		"Other"
@@ -31,13 +31,14 @@
 			]
 		}
 	},
+	"icon": "img/icon.png",
 	"scripts": {
 		"lint": "eslint .",
 		"pretest": "yarn run lint",
 		"test": "node ./test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.61.0",
+		"@types/vscode": "^1.60.0",
 		"@types/glob": "^7.1.4",
 		"@types/mocha": "^9.0.0",
 		"@types/node": "14.x",

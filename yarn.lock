@@ -85,10 +85,10 @@
   resolved "https://r.cnpmjs.org/@types/node/download/@types/node-14.17.32.tgz#2ca61c9ef8c77f6fa1733be9e623ceb0d372ad96"
   integrity sha1-LKYcnvjHf2+hczvp5iPOsNNyrZY=
 
-"@types/vscode@^1.61.0":
-  version "1.61.0"
-  resolved "https://r.cnpmjs.org/@types/vscode/download/@types/vscode-1.61.0.tgz#c54335b6f84c19c69b1435b17cc0ce3b2cecfeec"
-  integrity sha1-xUM1tvhMGcabFDWxfMDOOyzs/uw=
+"@types/vscode@^1.60.0":
+  version "1.62.0"
+  resolved "https://r.cnpmjs.org/@types/vscode/download/@types/vscode-1.62.0.tgz#b4d6d192d5aeb75e91d0adef689c3ecef9879da7"
+  integrity sha1-tNbRktWut16R0K3vaJw+zvmHnac=
 
 "@ungap/promise-all-settled@1.1.2":
   version "1.1.2"
