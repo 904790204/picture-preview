@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+#root {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+.item {
+  width: 180px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #bfbfbf;
+  margin: 0;
+  transition: ease 0.3s;
+  overflow: hidden;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: -1px;
+  margin-right: -1px;
+}
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 500px;
+}
+.empty p {
+  margin: 0;
+  color: #999999;
+  font-size: 14px;
+}
+.pic img,.pic svg {
+  max-width: 100px;
+  max-height: 100px;
+}
+.item:hover {
+  border-color: #0490e0;
+  background: #f1f1f1;
+  color: #0490e0;
+  z-index: 2;
+}
+.item:hover .pic img,.item:hover .pic svg {
+  transform: scale(1.4);
+}
+.operation {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.operation p{
+  font-size: 12px;
+  height: 24px;
+  line-height: 24px;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #999999;
+}
+.operation svg{
+  transform: translateY(1px);
+  cursor: pointer;
+  margin-left: 2px;
+}
+.operationInput {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 24px;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  box-sizing: border-box;
+  padding: 0 10px;
+  text-align: center;
+  border: 1px solid #bfbfbf;
+}
