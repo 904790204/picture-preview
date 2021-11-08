@@ -1,11 +1,11 @@
 {
 	"name": "img-preview",
-	"displayName": "图片缩略图预览",
+	"displayName": "图片文件管理",
 	"description": "a image preview plugin",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"publisher": "kimtakuang",
 	"engines": {
-		"vscode": "^1.60.0"
+		"vscode": "^1.30.0"
 	},
 	"categories": [
 		"Other"
@@ -38,7 +38,7 @@
 		"test": "node ./test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.60.0",
+		"@types/vscode": "1.30.0",
 		"@types/glob": "^7.1.4",
 		"@types/mocha": "^9.0.0",
 		"@types/node": "14.x",
