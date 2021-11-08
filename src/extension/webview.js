@@ -142,8 +142,7 @@ const getOperationContent = (src, el) => {
  * @returns 
  */
 const getPreviewContent = (src) => {
-	const pic = ['.png', '.jpg', '.jpeg']
-	const svg = '.svg'
+	const pic = ['.png', '.jpg', '.jpeg', '.svg']
 	// 读取文件夹下图片数据
 	const arr = fs.readdirSync(src)
 	return arr.map(el => {
@@ -153,12 +152,8 @@ const getPreviewContent = (src) => {
 		}
 		const url = vscode.Uri.file(path.join(src, el)).with({ scheme: 'vscode-resource' }).toString()
 		const ext = path.extname(path.join(src, el))
-		const content = fs.readFileSync(path.join(src, el), 'utf8')
 		if(pic.includes(ext)) {
 			return `<div class="item"><div class="pic"><img src="${url}" /></div>${getOperationContent(src, el)}</div>`
-		}
-		if(svg === ext) {
-			return `<div class="item"><div class="pic">${content}</div>${getOperationContent(src, el)}</div>`
 		}
 		return ''
 	}).join('')
