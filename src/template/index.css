@@ -41,14 +41,17 @@
 }
 .item:hover {
   border-color: #0490e0;
-  background: #f1f1f1;
+  /* background: #f1f1f1; */
   color: #0490e0;
   z-index: 2;
 }
 .item:hover .pic img,.item:hover .pic svg {
   transform: scale(1.4);
 }
-.operation {
+.item:hover .operationBackground {
+  display: flex;
+}
+.item .operation {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -58,7 +61,7 @@
   justify-content: center;
   align-items: center;
 }
-.operation p{
+.item .operation p{
   font-size: 12px;
   height: 24px;
   line-height: 24px;
@@ -68,12 +71,12 @@
   white-space: nowrap;
   color: #999999;
 }
-.operation svg{
+.item .operation svg{
   transform: translateY(1px);
   cursor: pointer;
   margin-left: 2px;
 }
-.operationInput {
+.item .operationInput {
   display: none;
   position: absolute;
   width: 100%;
@@ -85,4 +88,66 @@
   padding: 0 10px;
   text-align: center;
   border: 1px solid #bfbfbf;
+}
+
+.item .operationBackground {
+  position: absolute;
+  top: -156px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  display: none;
+}
+
+.item .operationBackground span {
+  width: 10px;
+  height: 10px;
+  display: block;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 1px solid gray;
+  margin-right: 10px;
+}
+
+.item .operationBackground .operationBackgroundGray {
+  background-color: #666666;
+  border-color: #666666;
+}
+
+.item .operationBackground .operationBackgroundBlack {
+  background-color: #333;
+  border-color: #333;
+}
+
+.mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.8);
+  top: 0;
+  left: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+.mask img {
+  max-width: 80%;
+}
+.mask .operation {
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  bottom: 20px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+}
+.mask .operation span {
+  cursor: pointer;
+  margin: 0 10px;
 }

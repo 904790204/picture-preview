@@ -105,18 +105,25 @@ const didReceiveMessage = (data) => {
 	// 编辑文件名
 	if(type === 'edit') {
 		const newpath = filepath.slice(0, filepath.lastIndexOf('/') + 1) + filename
-		// 重命名
-		fs.rename(filepath, newpath, (err) => {
-			if(err) {
-				// 通知webview编辑失败
+		fs.access(newpath, (err) => {
+			if (!err) {
 				panel.webview.postMessage({status: 'error', cbid});
-				vscode.window.showInformationMessage(err.message);
+				vscode.window.showInformationMessage('该目录下存在相同的文件名');
 				return
 			}
-			wvEdit = true
-			// 通知webview编辑成功
-			panel.webview.postMessage({status: 'success', filepath: newpath, cbid});
-			vscode.window.showInformationMessage(content);
+			// 重命名
+			fs.rename(filepath, newpath, (err) => {
+				if(err) {
+					// 通知webview编辑失败
+					panel.webview.postMessage({status: 'error', cbid});
+					vscode.window.showInformationMessage(err.message);
+					return
+				}
+				wvEdit = true
+				// 通知webview编辑成功
+				panel.webview.postMessage({status: 'success', filepath: newpath, cbid});
+				vscode.window.showInformationMessage(content);
+			})
 		})
 	}
 }
@@ -133,6 +140,11 @@ const getOperationContent = (src, el) => {
 						<input class="operationInput" type="text" value="${el}" />
 						<span class="operationEdit">${editIcon}</span>
 						<span class="operationCopy">${copyIcon}</span>
+						<div class="operationBackground">
+							<span class="operationBackgroundBlack"></span>
+							<span class="operationBackgroundGray"></span>
+							<span class="operationBackgroundWhite"></span>
+						</div>
 					</div>`
 }
 

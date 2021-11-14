@@ -23,7 +23,7 @@ window.addEventListener('message', ({data}) => {
 })
 
 // 事件代理
-document.querySelector("#root").addEventListener('click', (ev) => {
+document.body.addEventListener('click', (ev) => {
   let target = ev.target
   while(target) {
     switch (target.className) {
@@ -37,6 +37,46 @@ document.querySelector("#root").addEventListener('click', (ev) => {
         handleevent('copy', target.parentNode)
         target = null
         break;
+      // 修改背景颜色黑色
+      case 'operationBackgroundBlack':
+        handleevent('background', target.parentNode, 'black')
+        target = null
+        break;
+      // 修改背景颜色灰色
+      case 'operationBackgroundGray':
+        handleevent('background', target.parentNode, 'gray')
+        target = null
+        break;
+      // 修改背景颜色黑色
+      case 'operationBackgroundWhite':
+        handleevent('background', target.parentNode, 'white')
+        target = null
+        break;
+      // 图片弹窗打开
+      case 'pic':
+        handleevent('openmask', target.parentNode)
+        target = null
+        break;
+      // 图片弹窗关闭
+      case 'mask':
+        handleevent('closemask', target.parentNode)
+        target = null
+        break;
+      // 窗口图片放大
+      case 'maskBig':
+        handleevent('maskBig', target.parentNode, 'big')
+        target = null
+        break;
+      // 窗口图片缩小
+      case 'maskSmall':
+        handleevent('maskSmall', target.parentNode, 'small')
+        target = null
+        break;
+      // 窗口图片背景切换
+      case 'maskBg':
+        handleevent('maskBg', target.parentNode)
+        target = null
+        break;
       default:
         target = target.parentNode
         break;
@@ -45,13 +85,33 @@ document.querySelector("#root").addEventListener('click', (ev) => {
 })
 
 // 执行事件
-const handleevent = (type, target) => {
+const handleevent = (type, target, params) => {
   if(type === 'copy') {
     fileCopy(target)
   }
 
   if(type === 'edit') {
     fileEdit(target)
+  }
+
+  if(type === 'background') {
+    changeBackground(target, params)
+  }
+
+  if(type === 'openmask') {
+    openmask(target)
+  }
+
+  if(type === 'closemask') {
+    closemask()
+  }
+
+  if(type === 'maskBig' || type === 'maskSmall') {
+    maskPicSize(params)
+  }
+
+  if(type === 'maskBg') {
+    maskPicBg()
   }
 }
 
@@ -117,4 +177,52 @@ const findChildByClassName = (parent, className) => {
     }
   })
   return ele
+}
+
+// 修改背景颜色
+const changeBackground = (target, type) => {
+  target.parentNode.parentNode.style.background = type
+}
+
+// 图片放大
+const openmask = (target) => {
+  const filepath = target.querySelector(".pic img").getAttribute("src")
+  const mask = document.querySelector("#mask")
+  const img = document.createElement('img')
+  img.src = filepath
+  img.id = "maskPic"
+  mask.style.display = 'flex'
+  mask.querySelector("#bigimg").appendChild(img)
+}
+
+// 关闭窗口
+const closemask = () => {
+  const mask = document.querySelector("#mask")
+  mask.style.display = 'none'
+  mask.querySelector("#bigimg").innerHTML = ''
+}
+
+// 图片尺寸切换
+const maskPicSize = (type) => {
+  const img = document.querySelector("#maskPic")
+  const size = img.dataset['size'] || 1
+  const ratio = type === 'big' ? 1 : -1
+  const value = ratio + Number(size)
+
+  if(value < 1) return
+  img.style.transform = `scale(${value})`
+  img.setAttribute('data-size', value)
+}
+
+// 窗口背景切换
+const maskPicBg = () => {
+  const mask = document.querySelector("#mask")
+  const bg = mask.dataset['bg']
+  if(bg === 'white') {
+    mask.dataset['bg'] = 'black'
+    mask.style.background = 'rgba(0, 0, 0, 0.8)'
+  } else {
+    mask.dataset['bg'] = 'white'
+    mask.style.background = 'rgba(255, 255, 255, 0.8)'
+  }
 }
