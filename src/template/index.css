@@ -71,10 +71,20 @@
   white-space: nowrap;
   color: #999999;
 }
-.item .operation svg{
-  transform: translateY(1px);
-  cursor: pointer;
+.item .operation .operationEdit {
+  width: 15px;
+  height: 15px;
+  background: url(./svg/edit.svg) no-repeat center;
   margin-left: 2px;
+  cursor: pointer;
+}
+
+.item .operation .operationCopy {
+  width: 15px;
+  height: 15px;
+  background: url(./svg/copy.svg) no-repeat center;
+  margin-left: 2px;
+  cursor: pointer;
 }
 .item .operationInput {
   display: none;
