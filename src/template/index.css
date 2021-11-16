@@ -145,9 +145,6 @@
   align-items: center;
   z-index: 20;
 }
-.mask img {
-  max-width: 80%;
-}
 .mask .operation {
   position: absolute;
   width: 100%;
@@ -160,4 +157,9 @@
 .mask .operation span {
   cursor: pointer;
   margin: 0 10px;
+}
+.bigimg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

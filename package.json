@@ -2,7 +2,7 @@
 	"name": "img-preview",
 	"displayName": "图片文件管理",
 	"description": "a image preview plugin",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"publisher": "kimtakuang",
 	"engines": {
 		"vscode": "^1.30.0"

@@ -63,6 +63,9 @@ document.body.addEventListener('click', (ev) => {
         handleevent('openmask', target.parentNode)
         target = null
         break;
+      case 'bigimg': 
+        target = null
+        break
       // 图片弹窗关闭
       case 'mask':
         handleevent('closemask', target.parentNode)
