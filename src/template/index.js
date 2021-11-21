@@ -1,8 +1,9 @@
-const { postMessage } = window.acquireVsCodeApi();
+const VsCode = window.acquireVsCodeApi();
+const { postMessage } = VsCode
+
 // 回调队列
 const cbs = {}
 // 当前文件id
-// let targetId = null
 
 // webview通信
 const dispatch = (data, cb) => {
@@ -16,10 +17,15 @@ const dispatch = (data, cb) => {
 
 // 事件通知
 window.addEventListener('message', ({data}) => {
-  const { cbid, status, filepath } = data
-  const callback = cbs[cbid]
-  callback && callback(status, filepath)
-  delete cbs[cbid]
+  const { cbid, status, filepath, type, piclist } = data
+  if(type === 'update') {
+    renderPictureList(piclist)
+  }
+  if(type === 'callback') {
+    const callback = cbs[cbid]
+    callback && callback(status, filepath)
+    delete cbs[cbid]
+  }
 })
 
 // 事件代理
@@ -57,6 +63,9 @@ document.body.addEventListener('click', (ev) => {
         handleevent('openmask', target.parentNode)
         target = null
         break;
+      case 'bigimg': 
+        target = null
+        break
       // 图片弹窗关闭
       case 'mask':
         handleevent('closemask', target.parentNode)
@@ -112,6 +121,34 @@ const handleevent = (type, target, params) => {
 
   if(type === 'maskBg') {
     maskPicBg()
+  }
+}
+
+// 渲染图片列表
+const renderPictureList = (list = []) => {
+  if(list.length > 0) {
+    const pics = list.map(el => (
+      `<div class="item">
+        <div class="pic">
+          <img src="${el.url}" />
+        </div>
+        <div class="operation" data-path="${el.path}">
+          <p class="operationTitle">${el.name}</p>
+          <input class="operationInput" type="text" value="${el.name}" />
+          <span class="operationEdit"></span>
+          <span class="operationCopy"></span>
+          <div class="operationBackground">
+            <span class="operationBackgroundBlack"></span>
+            <span class="operationBackgroundGray"></span>
+            <span class="operationBackgroundWhite"></span>
+          </div>
+        </div>
+      </div>`
+    )).join('')
+    root.innerHTML = pics
+    document.querySelector('.empty').style.display = 'none'
+  } else {
+    document.querySelector('.empty').style.display = 'flex'
   }
 }
 

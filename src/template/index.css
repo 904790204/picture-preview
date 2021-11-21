@@ -71,10 +71,20 @@
   white-space: nowrap;
   color: #999999;
 }
-.item .operation svg{
-  transform: translateY(1px);
-  cursor: pointer;
+.item .operation .operationEdit {
+  width: 15px;
+  height: 15px;
+  background: url(./svg/edit.svg) no-repeat center;
   margin-left: 2px;
+  cursor: pointer;
+}
+
+.item .operation .operationCopy {
+  width: 15px;
+  height: 15px;
+  background: url(./svg/copy.svg) no-repeat center;
+  margin-left: 2px;
+  cursor: pointer;
 }
 .item .operationInput {
   display: none;
@@ -135,9 +145,6 @@
   align-items: center;
   z-index: 20;
 }
-.mask img {
-  max-width: 80%;
-}
 .mask .operation {
   position: absolute;
   width: 100%;
@@ -150,4 +157,9 @@
 .mask .operation span {
   cursor: pointer;
   margin: 0 10px;
+}
+.bigimg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
