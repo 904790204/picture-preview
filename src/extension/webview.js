@@ -50,7 +50,7 @@ const active = () => {
 			const stat = fs.statSync(path.join(src, el))
 			if(!stat.isDirectory()) {
 				const filepath = path.join(src, el)
-				const url = vscode.Uri.file(filepath).toString().replace('file://', 'https://file%2B.vscode-resource.vscode-webview.net')
+				const url = `https://file.vscode-resource.vscode-webview.net${filepath}`
 				const ext = path.extname(path.join(src, el))
 				if(pic.includes(ext)) {
 					result.push({url, path: filepath ,name: el})
