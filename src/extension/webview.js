@@ -50,7 +50,8 @@ const active = () => {
 			const stat = fs.statSync(path.join(src, el))
 			if(!stat.isDirectory()) {
 				const filepath = path.join(src, el)
-				const url = vscode.Uri.file(filepath).toString().replace('file://', 'https://file%2B.vscode-resource.vscode-webview.net')
+				const onDiskPath = vscode.Uri.file(filepath)
+				const url = panel.webview.asWebviewUri(onDiskPath).toString();
 				const ext = path.extname(path.join(src, el))
 				if(pic.includes(ext)) {
 					result.push({url, path: filepath ,name: el})
@@ -62,7 +63,7 @@ const active = () => {
 
 	/**
 	 * 监听文件夹变化
-	 * @returns 
+	 * @returns
 	 */
 	const watchFile = () => {
 		// 加个防抖，可能被触发多次
@@ -77,9 +78,9 @@ const active = () => {
 
 	/**
 	 * 防抖
-	 * @param {*} fn 
-	 * @param {*} wait 
-	 * @returns 
+	 * @param {*} fn
+	 * @param {*} wait
+	 * @returns
 	 */
 	function debounce(fn,wait){
 		var timer = null;
@@ -93,7 +94,7 @@ const active = () => {
 
 	/**
 	 * webview内容
-	 * @returns 
+	 * @returns
 	 */
 	const getWebviewContent = () => {
 		const templatePath = '../template/index.html'
