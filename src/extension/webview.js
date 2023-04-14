@@ -103,7 +103,7 @@ const active = () => {
 		let content = fs.readFileSync(path.join(__dirname, templatePath), 'utf8')
 		// 加载资源
 		content = content.replace(/(<link.+?href="|<script.+?src="|<img.+?src=")(.+?)"/g, (m, $1, $2) => {
-			return $1 + vscode.Uri.file(path.resolve(dirPath, $2)).with({ scheme: 'vscode-resource' }).toString() + '"';
+			return $1 +  panel.webview.asWebviewUri(vscode.Uri.file(path.resolve(dirPath, $2))).toString() + '"';
 		});
 		return content
 	}
